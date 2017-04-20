@@ -459,7 +459,7 @@ func TestEndWriteRestartReadOnlyTransaction(t *testing.T) {
 				// Return an immediate txn retry error. We need to go through the pErr
 				// and back to get a RetryableTxnError.
 				return roachpb.NewErrorWithTxn(
-					roachpb.NewTransactionRetryError(), txn.Proto()).GoError()
+					roachpb.NewTransactionRetryError(roachpb.RETRY_REASON_UNKNOWN), txn.Proto()).GoError()
 			}
 			if !success {
 				return errors.New("aborting on purpose")
