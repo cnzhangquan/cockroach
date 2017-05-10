@@ -412,6 +412,7 @@ libsnappy: $(SNAPPY_DIR)/Makefile $(BOOTSTRAP_TARGET)
 
 .PHONY: librocksdb
 librocksdb: $(ROCKSDB_DIR)/Makefile $(BOOTSTRAP_TARGET)
+	sed -i 's/std::max_align_t/max_align_t/' $(ROCKSDB_SRC_DIR)/util/arena.cc
 	@$(MAKE) --no-print-directory -C $(ROCKSDB_DIR) -j$(NCPUS) rocksdb
 
 .PHONY: clean-c-deps
